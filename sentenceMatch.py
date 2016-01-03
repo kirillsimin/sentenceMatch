@@ -19,7 +19,7 @@ import nltk
 from nltk.corpus import wordnet
 
 
-mySentence = input('Enter sentence to match: ')
+mySentence = raw_input('Enter sentence to match: ')
 #mySentence = 'God was happy about it.'
 print('\nYour sentence:\n{}'.format(mySentence))
 
