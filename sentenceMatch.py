@@ -4,7 +4,7 @@
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    (at your option) any later version. 
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,7 +16,7 @@
 import sys
 import os.path
 import nltk
-from nltk.corpus import wordnet as wn
+from nltk.corpus import wordnet
 
 
 mySentence = input('Enter sentence to match: ')
@@ -32,7 +32,7 @@ matchedSentences = []
 myWords = nltk.word_tokenize(mySentence)
 for myWord in myWords:
     #print('\n** {} **'.format(myWord))
-    for syn in wn.synsets(myWord):
+    for syn in wordnet.synsets(myWord):
         syn = syn.name()[:-5]
         #print(syn)
         mySyns.add(syn)
@@ -52,16 +52,20 @@ for oneSentence in allSentences:
     theirWords = nltk.word_tokenize(oneSentence)
     for theirWord in theirWords:
         #print('\n** {} **'.format(theirWord))
-        for syn in wn.synsets(theirWord):
+        for syn in wordnet.synsets(theirWord):
             syn = syn.name()[:-5]
             #print(syn)
             theirSyns.add(syn)
+
+    for i in theirWords:
+        if i in myWords:
+            simCount += 10
     
-    for i in theirSyns:
-        if i in mySyns or i in mySentence:
+    for i in mySyns:
+        if i in mySyns:
             simCount += 1
     
-    simIndex = (simCount / len(theirWords)) * 1000
+    simIndex = (simCount / len(myWords)) * 1000
     #print('\n{}\nIndex:{}'.format(oneSentence,simIndex))
     myTup = (oneSentence,simIndex)
     if simIndex > 0 and len(oneSentence) > 3:
