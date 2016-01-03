@@ -19,7 +19,7 @@ import nltk
 from nltk.corpus import wordnet
 
 
-mySentence = raw_input('Enter sentence to match: ')
+mySentence = input('Enter sentence to match: ')
 #mySentence = 'God was happy about it.'
 print('\nYour sentence:\n{}'.format(mySentence))
 
@@ -57,15 +57,16 @@ for oneSentence in allSentences:
             #print(syn)
             theirSyns.add(syn)
 
-    for i in theirWords:
-        if i in myWords:
-            simCount += 10
+            if theirWord in myWords:
+                simCount += 10
+                break
     
-    for i in mySyns:
-        if i in mySyns:
-            simCount += 1
+        for theirSyn in mySyns:
+            if theirSyn in mySyns:
+                simCount += 1
+                break
     
-    simIndex = (simCount / len(myWords)) * 1000
+    simIndex = (simCount / len(theirWords)) * 1000
     #print('\n{}\nIndex:{}'.format(oneSentence,simIndex))
     myTup = (oneSentence,simIndex)
     if simIndex > 0 and len(oneSentence) > 3:
@@ -77,3 +78,6 @@ matchedSentences = sorted(matchedSentences, key=lambda x: x[1])
 for aMatch in matchedSentences:
     print(aMatch[0])
     print('Match Index: {}\n'.format(aMatch[1]))
+
+
+fileOpen.close()
