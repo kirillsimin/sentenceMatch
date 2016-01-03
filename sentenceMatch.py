@@ -46,6 +46,10 @@ else:
     sys.exit('No file found.')
 
 for oneSentence in allSentences:
+    print()
+    print()
+    print (oneSentence)
+    print()
     theirSyns = set()
     simCount = 0
     simIndex = 0
@@ -58,15 +62,17 @@ for oneSentence in allSentences:
             theirSyns.add(syn)
 
             if theirWord in myWords:
-                simCount += 10
+                simCount += 100
+                print('WORD MATCH: {}'.format(theirWord))
                 break
     
-        for theirSyn in mySyns:
-            if theirSyn in mySyns:
-                simCount += 1
-                break
+    for theirSyn in theirSyns:
+        if theirSyn in mySyns:
+            simCount += 1
+            print('SYNONYM MATCH: {}'.format(theirSyn))
+            #break
     
-    simIndex = (simCount / len(theirWords)) * 1000
+    simIndex = (simCount / len(theirWords)) * 100
     #print('\n{}\nIndex:{}'.format(oneSentence,simIndex))
     myTup = (oneSentence,simIndex)
     if simIndex > 0 and len(oneSentence) > 3:
