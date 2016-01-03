@@ -56,11 +56,13 @@ for oneSentence in allSentences:
             syn = syn.name()[:-5]
             #print(syn)
             theirSyns.add(syn)
+
+    for i in theirWords:
+        if i in myWords:
+            simCount += 10
     
-    for i in theirSyns:
-        if i in mySentence:
-            simCount += 5
-        elif i in mySyns:
+    for i in mySyns:
+        if i in mySyns:
             simCount += 1
     
     simIndex = (simCount / len(myWords)) * 1000
